@@ -20,6 +20,8 @@ class ArgumentParserWrapper:
     def assert_command_validity(self, args) -> None:
         matches = re.findall(self.CMD_VAR_REGEX, args.command)
         matches_set = set(matches)
+        assert matches_set != set(), "No INPUT or OUTPUT found in command"
+        assert "INPUT" in matches_set, "INPUT is compulsory" 
         assert len(matches_set) == len(matches), "Name conflict. INPUT and OUTPUT can only appear once."
         assert not (matches_set.difference(self.VALID_ARGUMENTS)), "Invalid argument name. Only use %(INPUT)s or %(OUTPUT)s in the general command string."
 
@@ -66,7 +68,7 @@ class DirHandler:
     def run_all_commands(self, command_list):
         for command in command_list:
             print(command)
-            os.system(command)
+            # os.system(command)
             print()
 
     def verify_run(self):

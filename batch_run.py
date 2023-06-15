@@ -68,7 +68,7 @@ class DirHandler:
     def run_all_commands(self, command_list):
         for command in command_list:
             print(command)
-            # os.system(command)
+            os.system(command)
             print()
 
     def verify_run(self):
